@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
+    <title>CryptoAI Trader</title>
+    <script>
+      // Catch and log any script loading errors
+      window.addEventListener('error', function(e) {
+        if (e.filename && e.filename.includes('.js')) {
+          console.error('Script loading error:', e);
+        }
+      });
+
+      // Handle runtime errors
+      window.addEventListener('error', function(e) {
+        console.error('Runtime error:', e);
+      });
+      
+      // Handle unhandled promise rejections
+      window.addEventListener('unhandledrejection', function(e) {
+        console.error('Unhandled promise rejection:', e);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>You need to enable JavaScript to run this application.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
