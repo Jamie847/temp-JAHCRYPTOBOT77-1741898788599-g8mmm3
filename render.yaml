@@ -1,0 +1,76 @@
+services:
+  - type: web
+    name: cryptoai-trader
+    env: node
+    region: oregon
+    plan: standard
+    envVars:
+      - key: NODE_TLS_REJECT_UNAUTHORIZED
+        value: "1"
+      - key: NODE_OPTIONS
+        value: "--dns-result-order=ipv4first --max-http-header-size=16384"
+      - key: JUPITER_API_KEY
+        sync: false
+      - key: DNS_SERVERS
+        value: "1.1.1.1,8.8.8.8"
+      - key: HTTP_PROXY
+        value: ""
+      - key: HTTPS_PROXY  
+        value: ""
+    runtime: node
+    runtime: node
+    nodeVersion: 20.11.0
+    buildCommand: npm ci && npm run build:server
+    startCommand: NODE_ENV=production node dist/server.js
+    healthCheckPath: /health
+    healthCheckTimeout: 180
+    autoDeploy: true
+    numInstances: 1
+    minInstances: 1
+    maxInstances: 1
+    disk:
+      name: logs
+      mountPath: /app/logs
+      sizeGB: 1
+    numInstances: 1
+    minInstances: 1
+    maxInstances: 1
+    buildFilter:
+      paths:
+        - src/services/**
+        - src/types/**
+        - package.json
+        - server.js
+        - tsconfig.json
+        - tsconfig.node.json
+        - tsconfig.json
+        - tsconfig.node.json
+        - Dockerfile
+    disk:
+      name: logs
+      mountPath: /app/logs
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
